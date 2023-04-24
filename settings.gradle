@@ -1,0 +1,4 @@
+rootProject.name = 'airways2'
+include 'airways2-domain'
+include 'airways2-calculator'
+include 'airways2-web'

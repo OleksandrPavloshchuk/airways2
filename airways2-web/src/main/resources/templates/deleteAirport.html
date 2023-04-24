@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header.html :: head( pageTitle='AIRWAYS2: delete airport')"></head>
+<body>
+<div class="container-fluid">
+    <head th:replace="fragments/navigation.html :: nav(isCalculation=false, isAirport=true, isFlight=false, showButton=false)"></head>
+    <!-- main -->
+    <main class="container-fluid">
+        <h1>Delete airport</h1>
+        <form action="#" th:action="@{/airport/confirmDelete}" th:object="${object}" method="post">
+            <div class="mb-3">
+                <label for="code" class="form-label">Code</label>
+                <input id="code" type="text" class="form-control" readonly="true"
+                       th:field="*{code}"
+                       maxlength="3"/>
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input id="name" type="text" class="form-control" readonly="true"
+                       th:field="*{name}"/>
+            </div>
+            <div class="mb-3">
+                <input type="submit" class="btn btn-danger" th:value="Delete"/>
+            </div>
+        </form>
+    </main>
+</div>
+<script th:replace="fragments/footer.html :: script"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<nav xmlns:th="http://www.w3.org/1999/xhtml"
+     class="navbar navbar-expand-lg navbar-light bg-light"
+     th:fragment="nav(isCalculation, isFlight, isAirport, showButton)">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">AIRWAYS2</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link"
+                       th:classAppend="${isCalculation ? 'active' : ''}"
+                       th:href="@{/}">Calculate</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       th:classAppend="${isFlight ? 'active' : ''}"
+                       th:href="@{/flight}">Flights</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       th:classAppend="${isAirport ? 'active' : ''}"
+                       aria-current="page" th:href="@{/airport}">Airports</a>
+                </li>
+                <li class="nav-item" th:if="${showButton && isFlight}" >
+                    <a class="btn btn-success"
+                       th:href="@{/flight/new}">New Flight</a>
+                </li>
+                <li class="nav-item" th:if="${showButton && isAirport}" >
+                    <a class="btn btn-success"
+                       th:href="@{/airport/new}">New Airport</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

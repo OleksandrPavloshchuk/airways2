@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header.html :: head( pageTitle='AIRWAYS2: airport')"></head>
+<body>
+<div class="container-fluid">
+  <head th:replace="fragments/navigation.html :: nav(isCalculation=false, isAirport=true, isFlight=false, showButton=false)"></head>
+
+  <!-- main -->
+  <main class="container-fluid">
+    <h2>Edit Airport</h2>
+    <form action="#" th:action="@{/airport/save}" th:object="${object}" method="post">
+      <div class="mb-3">
+        <label for="code" class="form-label">Code
+          <span class="badge text-danger">*</span>
+        </label>
+        <input id="code" type="text" class="form-control"
+               required="true"
+               th:field="*{code}"
+               maxlength="3"
+               minlength="3" />
+      </div>
+      <div class="mb-3">
+        <label for="name" class="form-label">Name
+          <span class="badge text-danger">*</span>
+        </label>
+        <input id="name" type="text" class="form-control"
+               required="true"
+               th:field="*{name}"
+               minLength="5"
+               maxLength="255"/>
+      </div>
+      <div class="mb-3">
+        <input type="submit" class="btn btn-success"/>
+        <input type="reset" class="btn btn-secondary"/>
+      </div>
+    </form>
+  </main>
+</div>
+<script th:replace="fragments/footer.html :: script"></script>
+</body>
+</html>

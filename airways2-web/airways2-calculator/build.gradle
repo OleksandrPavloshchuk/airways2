@@ -1,0 +1,10 @@
+plugins {
+    id 'java-library'
+}
+
+group 'probe.airways2'
+
+dependencies {
+    implementation project(":airways2-domain")
+}
+

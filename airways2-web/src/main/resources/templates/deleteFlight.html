@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header.html :: head( pageTitle='AIRWAYS2: delete flight')"></head>
+<body>
+<div class="container-fluid">
+    <head th:replace="fragments/navigation.html :: nav(isCalculation=false, isAirport=false, isFlight=true, showButton=false)"></head>
+    <!-- main -->
+    <main class="container-fluid">
+        <h1>Delete Flight</h1>
+        <form action="#" th:action="@{/flight/confirmDelete}" th:object="${object}" method="post">
+            <div class="mb-3">
+                <label for="id" class="form-label">Id
+                    <span class="badge text-danger">*</span>
+                </label>
+                <input id="id" type="text" class="form-control"
+                       required="true"
+                       th:field="*{id}"
+                       readonly="true"
+                       minlength="3"
+                       maxlength="10"/>
+            </div>
+            <div class="mb-3">
+                <label for="startAirport" class="form-label">From airport
+                    <span class="badge text-danger">*</span>
+                </label>
+                <select id="startAirport" class="form-select"
+                        required="true"
+                        disabled="true"
+                        th:field="*{startAirport}">
+                    <option th:each="airport : ${airports}" th:value="${airport.code}" th:text="${airport}"/>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="endAirport" class="form-label">To airport
+                    <span class="badge text-danger">*</span>
+                </label>
+                <select id="endAirport" class="form-select"
+                        required="true"
+                        disabled="true"
+                        th:field="*{endAirport}">
+                    <option th:each="airport : ${airports}" th:value="${airport.code}" th:text="${airport}"/>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="income" class="form-label">Income
+                    <span class="badge text-danger">*</span>
+                </label>
+                <input id="income" type="number" class="form-control"
+                       required="true"
+                       disabled="true"
+                       th:field="*{income}"/>
+            </div>
+            <div class="mb-3">
+                <label for="expenses" class="form-label">Expenses
+                    <span class="badge text-danger">*</span>
+                </label>
+                <input id="expenses" type="number" class="form-control"
+                       required="true"
+                       readonly="true"
+                       th:field="*{expenses}"/>
+            </div>
+            <div class="mb-3">
+                <label for="departureTime" class="form-label">Departure timestamp
+                    <span class="badge text-danger">*</span>
+                </label>
+                <input id="departureTime" type="text" class="form-control"
+                       required="true"
+                       readonly="true"
+                       pattern="[0-3][0-9]/[0-1][0-9]/[0-9]{4} [0-2][0-9]:[0-5][0-9]"
+                       th:field="*{departureTime}"/>
+            </div>
+            <div class="mb-3">
+                <label for="arrivalTime" class="form-label">Arrival timestamp
+                    <span class="badge text-danger">*</span>
+                </label>
+                <input id="arrivalTime" type="text" class="form-control"
+                       required="true"
+                       readonly="true"
+                       pattern="[0-3][0-9]/[0-1][0-9]/[0-9]{4} [0-2][0-9]:[0-5][0-9]"
+                       th:field="*{arrivalTime}"/>
+            </div>
+            <div class="mb-3">
+                <label for="mandatory" class="form-label">Mandatory
+                    <span class="badge text-danger">*</span>
+                </label>
+                <input id="mandatory" type="checkbox" class="form-check-input"
+                       disabled="true"
+                       th:field="*{mandatory}"/>
+            </div>
+            <div class="mb-3">
+                <input type="submit" class="btn btn-danger" th:value="Delete"/>
+            </div>
+        </form>
+    </main>
+</div>
+<script th:replace="fragments/footer.html :: script"></script>
+</body>
+</html>

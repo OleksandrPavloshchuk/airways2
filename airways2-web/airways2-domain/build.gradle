@@ -1,0 +1,12 @@
+plugins {
+    id 'java-library'
+}
+
+group 'probe.airways2'
+
+dependencies {
+    api "javax.persistence:javax.persistence-api:2.2"
+    api 'org.hibernate.validator:hibernate-validator:7.0.4.Final'
+    api 'javax.validation:validation-api:2.0.1.Final'
+}
+

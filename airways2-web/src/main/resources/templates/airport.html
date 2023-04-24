@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header.html :: head( pageTitle='AIRWAYS2: airports')"></head>
+<body>
+<div class="container-fluid">
+    <head th:replace="fragments/navigation.html :: nav(isCalculation=false, isAirport=true, isFlight=false, showButton=true)"></head>
+    <!-- main -->
+    <main class="container-fluid">
+        <div class="text-danger" th:text="${errorRecordAbsents}"/>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Name</th>
+                <th scope="col"/>
+                <th scope="col"/>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="airport : ${list}">
+                <td th:text="${airport.code}" />
+                <td th:text="${airport.name}" />
+                <td>
+                    <a th:href="@{/airport/edit/{id}(id=${airport.code})}" type="button" class="btn btn-primary">Edit</a>
+                </td>
+                <td>
+                    <a th:href="@{/airport/delete/{id}(id=${airport.code})}" type="button" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+</div>
+<script th:replace="fragments/footer.html :: script"></script>
+</body>
+</html>

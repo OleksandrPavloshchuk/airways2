@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header.html :: head( pageTitle='AIRWAYS2: flights')"></head>
+<body>
+<div class="container-fluid">
+    <head th:replace="fragments/navigation.html :: nav(isCalculation=false, isAirport=false, isFlight=true, showButton=true)"></head>
+    <!-- main -->
+    <main class="container-fluid">
+        <div class="text-danger" th:text="${errorRecordAbsents}"/>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">From airport</th>
+                <th scope="col">To airport</th>
+                <th scope="col">Income</th>
+                <th scope="col">Expenses</th>
+                <th scope="col">Departure time</th>
+                <th scope="col">Arrival time</th>
+                <th scope="col">Mandatory</th>
+                <th scope="col"/>
+                <th scope="col"/>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="flight : ${list}">
+                <td th:text="${flight.id}" />
+                <td th:text="${flight.startAirport}" />
+                <td th:text="${flight.endAirport}" />
+                <td th:text="${flight.income}" />
+                <td th:text="${flight.expenses}" />
+                <td th:text="${#dates.format(flight.departureTime, 'MM/dd/yyyy HH:mm')}" />
+                <td th:text="${#dates.format(flight.arrivalTime, 'MM/dd/yyyy HH:mm')}" />
+                <td th:text="${flight.mandatory}" />
+                <td>
+                    <a th:href="@{/flight/edit/{id}(id=${flight.id})}" type="button" class="btn btn-primary">Edit</a>
+                </td>
+                <td>
+                    <a th:href="@{/flight/delete/{id}(id=${flight.id})}" type="button" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+</div>
+<script th:replace="fragments/footer.html :: script"></script>
+</body>
+</html>

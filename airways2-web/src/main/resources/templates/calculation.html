@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header.html :: head( pageTitle='AIRWAYS2: airports')"></head>
+<body>
+<div class="container-fluid">
+  <head
+      th:replace="fragments/navigation.html :: nav(isCalculation=true, isAirport=false, isFlight=false, showButton=true)"></head>
+  <!-- main -->
+  <main class="container-fluid">
+    <h3>Cycles</h3>
+    <div th:each="cycle : ${cycles}">
+      <h4 th:text="${cycle.tag}" />
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">From airport</th>
+          <th scope="col">To airport</th>
+          <th scope="col">Income</th>
+          <th scope="col">Expenses</th>
+          <th scope="col">Departure time</th>
+          <th scope="col">Arrival time</th>
+          <th scope="col">Mandatory</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="flight : ${cycle.flights}">
+          <td th:text="${flight.id}"/>
+          <td th:text="${flight.startAirport}"/>
+          <td th:text="${flight.endAirport}"/>
+          <td th:text="${flight.income}"/>
+          <td th:text="${flight.expenses}"/>
+          <td th:text="${#dates.format(flight.departureTime, 'MM/dd/yyyy HH:mm')}"/>
+          <td th:text="${#dates.format(flight.arrivalTime, 'MM/dd/yyyy HH:mm')}"/>
+          <td th:text="${flight.mandatory}"/>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Mandatory flights, which are not contained into cycles</h3>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">From airport</th>
+        <th scope="col">To airport</th>
+        <th scope="col">Income</th>
+        <th scope="col">Expenses</th>
+        <th scope="col">Departure time</th>
+        <th scope="col">Arrival time</th>
+        <th scope="col">Mandatory</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="flight : ${mandatoryFlightsWithoutCycles}">
+        <td th:text="${flight.id}"/>
+        <td th:text="${flight.startAirport}"/>
+        <td th:text="${flight.endAirport}"/>
+        <td th:text="${flight.income}"/>
+        <td th:text="${flight.expenses}"/>
+        <td th:text="${#dates.format(flight.departureTime, 'MM/dd/yyyy HH:mm')}"/>
+        <td th:text="${#dates.format(flight.arrivalTime, 'MM/dd/yyyy HH:mm')}"/>
+        <td th:text="${flight.mandatory}"/>
+      </tr>
+      </tbody>
+    </table>
+
+  </main>
+</div>
+<script th:replace="fragments/footer.html :: script"></script>
+</body>
+</html>
